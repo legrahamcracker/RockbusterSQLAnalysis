@@ -1,4 +1,4 @@
-# RockbusterSQLQueries
+# Rockbuster Rental Data SQL Analysis
 Rockbuster is a fictional worldwide movie rental business. The dataset included information on film inventory, customers, payments, and other related information
 
 ## Context
