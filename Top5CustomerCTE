@@ -1,0 +1,55 @@
+This query is to find the average amount paid by the top 5 customers by total amount paid.
+The following tables were used: Customer, Address, city, country, and payment. 
+A CTE was created to easily answer business questions that raised about the top 5 customers by amount paid,
+
+
+
+With top_5_customers_cte (top_customer, 
+                          top_city,
+                          top_total_amount_paid) 
+AS (
+  SELECT table_customer.customer_id,  
+         city.city, 
+         SUM(table_payment.amount) AS total_amount_paid
+  FROM Customer AS table_customer
+  INNER JOIN Address AS table_address ON table_customer.address_id = table_address.address_id
+  INNER JOIN city AS table_city ON table_address.city_id = table_city.city_id
+  INNER JOIN country AS table_country ON table_city.country_id = table_country.country_id
+  INNER JOIN payment AS table_payment ON table_payment.customer_id = table_customer.customer_id
+  GROUP BY table_customer.customer_id, table_city.city, table_country.country
+  HAVING table_city.city 
+  IN ('Aurora',
+      'Atlixco',
+      'Xintai',
+      'Adoni',
+      'Dhule (Dhulia)',
+      'Kurashiki',
+      'Pingxiang',
+      'Sivas',
+      'Celaya',
+      'So Leopoldo')
+  ORDER BY total_amount_paid DESC
+  LIMIT 5)
+
+
+-- The 2 queries below were performed separately.
+-- They both used the CTE from above to utilize information about the top 5 customers.
+
+
+SELECT avg(cte.top_total_amount_paid) AS average_amount_paid
+FROM top_5_customers_cte AS cte
+
+
+
+SELECT table_country.country,
+       count(distinct table_customer.customer_id) AS all_customer_count,
+       count(distinct top_customer) AS top_customer_count
+FROM Customer AS table_customer
+INNER JOIN Address AS table_address ON table_customer.address_id = table_address.address_id
+INNER JOIN city AS table_city ON table_address.city_id = table_city.city_id
+INNER JOIN country AS table_country ON table_city.country_id = table_country.country_id
+INNER JOIN payment AS table_payment ON table_payment.customer_id = table_customer.customer_id
+LEFT JOIN top_5_customers_cte AS cte ON table_country.country = cte.top_country 
+GROUP BY table_country.country
+ORDER BY all_customer_count DESC
+LIMIT 30
