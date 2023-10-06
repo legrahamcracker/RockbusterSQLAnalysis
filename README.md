@@ -18,7 +18,10 @@ The dataset included information on the following:
 - stores
 
 ## Contents
-
+Top10CitiesTableJoin
+Top10CountriesTableJoin
+Top5CustomerCTE
+Top5CustomersTableJoin
 
 ## Visualizations
 
