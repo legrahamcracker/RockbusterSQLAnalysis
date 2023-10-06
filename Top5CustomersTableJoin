@@ -1,0 +1,25 @@
+This query is to find the top 5 customers by amount paid within the top 10 cities within the 10 countries.
+The following tables were used: Customer, Address, city, and country. 
+The tables were inner joined on their respective primary keys.
+Additionally, the payments table was inner joined to find the each customers amount paid.
+
+SELECT A.customer_id, A.first_name, A.last_name, C.city, D.country, SUM(P.amount) AS Total_amount_paid
+FROM Customer A
+INNER JOIN Address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+INNER JOIN payment P ON P.customer_id = A.customer_id
+GROUP BY A.customer_id, A.first_name, A.last_name, c.city, D.country
+HAVING c.city IN (
+  'Aurora',
+  'Atlixco',
+  'Xintai',
+  'Adoni',
+  'Dhule (Dhulia)',
+  'Kurashiki',
+  'Pingxiang',
+  'Sivas',
+  'Celaya',
+  'So Leopoldo')
+ORDER BY Total_amount_paid DESC
+LIMIT 5
