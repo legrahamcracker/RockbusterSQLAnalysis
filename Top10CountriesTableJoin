@@ -3,9 +3,13 @@ The following tables were used: Customer, Address, city, and country.
 The tables were inner joined on their respective primary keys.
 
 
-SELECT D.country, COUNT(A.customer_id) AS count_of_customers FROM Customer A
-INNER JOIN Address B ON A.address_id = B.address_id
-INNER JOIN city C ON B.city_id = C.city_id
-INNER JOIN country D ON C.country_id = D.country_id GROUP BY d.country
+
+SELECT table_country.country, 
+       COUNT(table_customer.customer_id) AS count_of_customers 
+FROM Customer AS table_customer
+INNER JOIN Address AS table_address ON table_customer.address_id = table_address.address_id
+INNER JOIN city AS table_city ON table_address.city_id = table_city.city_id
+INNER JOIN country AS table_country ON table_city.country_id = table_country.country_id 
+GROUP BY table_country.country
 ORDER BY count_of_customers DESC
 LIMIT 10
