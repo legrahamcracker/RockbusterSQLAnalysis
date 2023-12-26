@@ -3,6 +3,8 @@
 # The tables were inner joined on their respective primary keys.
 # Additionally, the payments table was inner joined to find the each customers amount paid.
 
+
+
 SELECT A.customer_id, A.first_name, A.last_name, C.city, D.country, SUM(P.amount) AS Total_amount_paid
 FROM Customer A
 INNER JOIN Address B ON A.address_id = B.address_id
