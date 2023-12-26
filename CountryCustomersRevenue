@@ -1,0 +1,13 @@
+This query is to aggregate customer count and revenue per country for the purposes of importing into Tableau.
+The following tables were used: Customer, Address, City, and Country. 
+The tables were inner joined on their respective primary keys.
+
+
+
+SELECT D.Country, Count(distinct A.customer_id) AS Customer_Count, Sum(P.amount) AS Country_Total_Revenue
+FROM Customer A
+INNER JOIN Address B ON A.Address_id = B.address_id
+INNER JOIN City C ON B.city_id = C.city_id
+INNER JOIN Country D ON C.country_id = D.country_id
+INNER JOIN Payment P ON P.customer_id = A.customer_id
+GROUP BY D.Country
