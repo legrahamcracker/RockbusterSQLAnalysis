@@ -3,7 +3,6 @@
 # A CTE was created to easily answer business questions that raised about the top 5 customers by amount paid,
 
 
-
 With top_5_customers_cte (top_customer, 
                           top_city,
                           top_total_amount_paid) 
