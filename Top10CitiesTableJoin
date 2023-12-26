@@ -2,6 +2,7 @@
 # The following tables were used: Customer, Address, city, and country. 
 # The tables were inner joined on their respective primary keys.
 
+
 SELECT table_city.city,
        table_country.country, 
        COUNT(table_customer.customer_id) AS count_of_customers 
