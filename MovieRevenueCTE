@@ -1,0 +1,22 @@
+# This query is to aggregate rental revenue per movie.
+# In addition, additional rental information to showcase more information in Tableau.
+# The following tables were used: Payment, Rental, Inventory, Film, Film_Category, and Category. 
+
+# First, a CTE was created to to aggregate rental revenue per movie.
+# Next, the data was queried to include rental information in addition to rental revenue per movie.
+
+
+WITH Rental_Revenue_CTE (Title, Rental_Revenue) AS (Select F.Title, Sum(P.amount) AS Rental_Revenue
+FROM Payment P
+INNER JOIN Rental R ON P.rental_id = R.rental_id
+INNER JOIN Inventory I ON R.inventory_id = I.inventory_id
+INNER JOIN Film F ON I.film_id = F.film_Id
+GROUP BY F.Title
+ORDER BY Rental_Revenue DESC)
+
+Select F.title, F.length, F.rental_duration, F.rental_rate, CTE.Rental_Revenue
+From Film F
+INNER JOIN Film_Category FC on FC.film_id = F.film_id
+INNER JOIN Category C ON C.Category_id = FC.Category_id
+INNER JOIN Rental_Revenue_CTE CTE ON CTE.Title = F.Title
+ORDER BY CTE.Rental_Revenue DESC
