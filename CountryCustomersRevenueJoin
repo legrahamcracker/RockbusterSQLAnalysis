@@ -3,7 +3,6 @@
 # The tables were inner joined on their respective primary keys.
 
 
-
 SELECT D.Country, Count(distinct A.customer_id) AS Customer_Count, Sum(P.amount) AS Country_Total_Revenue
 FROM Customer A
 INNER JOIN Address B ON A.Address_id = B.address_id
