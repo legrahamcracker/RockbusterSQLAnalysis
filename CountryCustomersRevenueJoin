@@ -1,6 +1,6 @@
-This query is to aggregate customer count and revenue per country for the purposes of importing into Tableau.
-The following tables were used: Customer, Address, City, and Country. 
-The tables were inner joined on their respective primary keys.
+# This query is to aggregate customer count and revenue per country for the purposes of importing into Tableau.
+# The following tables were used: Customer, Address, City, and Country. 
+# The tables were inner joined on their respective primary keys.
 
 
 
