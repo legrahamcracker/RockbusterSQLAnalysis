@@ -1,6 +1,6 @@
-This query is to find the top 10 countries by number of customers. 
-The following tables were used: Customer, Address, city, and country. 
-The tables were inner joined on their respective primary keys.
+# This query is to find the top 10 countries by number of customers. 
+# The following tables were used: Customer, Address, city, and country. 
+# The tables were inner joined on their respective primary keys.
 
 
 
