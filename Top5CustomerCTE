@@ -1,6 +1,6 @@
-This query is to find the average amount paid by the top 5 customers by total amount paid.
-The following tables were used: Customer, Address, city, country, and payment. 
-A CTE was created to easily answer business questions that raised about the top 5 customers by amount paid,
+# This query is to find the average amount paid by the top 5 customers by total amount paid.
+# The following tables were used: Customer, Address, city, country, and payment. 
+# A CTE was created to easily answer business questions that raised about the top 5 customers by amount paid,
 
 
 
